@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import { PrismaClient } from '@prisma/client'; 
 import jwt from 'jsonwebtoken';
 import authenticateToken from './auth.js';
+import cors from 'cors';
 
 const prisma = new PrismaClient(); 
 const app = express();
