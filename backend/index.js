@@ -1,11 +1,14 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import { PrismaClient } from '@prisma/client'; 
+import jwt from 'jsonwebtoken';
+import authenticateToken from './auth.js';
 
 const prisma = new PrismaClient(); 
 const app = express();
 app.use(express.json());
 
+const secret = process.env.JWT_SECRET;
 
 app.post('/signup', async (req, res) => {
     const {username, email, password} = req.body;
@@ -31,10 +34,15 @@ app.post('/signup', async (req, res) => {
             }
         });
 
+        const token  = jwt.sign({
+            userId: newUser.id
+        }, secret, { expiresIn: '1h' });
+
         res.status(200).json({
             message: 'User created successfully',
             user: newUser,
-            userId: newUser.id
+            userId: newUser.id,
+            token: token
         })
     }
     catch(err){
@@ -86,6 +94,26 @@ app.post('/signin', async (req, res) => {
         })
     }
 })
+
+
+
+app.get('/userdata', authenticateToken,  (req, res) => {
+    // Dummy data for the dashboard
+    const data = {
+      recentActivities: [
+        { id: 1, activity: 'Logged in', timestamp: Date() },
+        { id: 2, activity: 'Viewed profile', timestamp: Date() },
+      ],
+      statistics: {
+        posts: 12,
+        followers: 34,
+        following: 56,
+      },
+    };
+  
+    res.json(data);
+  });
+  
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
