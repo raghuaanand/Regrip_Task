@@ -76,7 +76,7 @@ Before you begin, ensure you have the following installed on your local machine:
 ### Running the Backend Server
 
 1. **Get PostgreSQL Database URL from neon or avien (from browser) or download PostgreSQL locally**
-2. **Copy the .env.example to .env and use your Database URL **
+2. **Copy the .env.example to .env and use your Database URL**
 
 3. **Navigate back to the root directory (if not already there):**
 
