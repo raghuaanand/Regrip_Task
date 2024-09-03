@@ -122,11 +122,11 @@ app.get("/userdata",  (req, res) => {
       { name: "Tyre Defects", count: 257 },
     ],
     inventory: [
-      { size: "NSD", new: 45, refread: 0, scrap: 65, total: 110 },
-      { size: "8-4", new: 46, refread: 9, scrap: 69, total: 124 },
-      { size: "12-16", new: 64, refread: 41, scrap: 89, total: 194 },
-      { size: "16-20", new: 26, refread: 23, scrap: 23, total: 72 },
-      { size: "20-24", new: 72, refread: 21, scrap: 21, total: 123 },
+        { nsd: "4 - 8", new: 45, retread: 69, scrap: 69, total: 185 },
+        { nsd: "8 - 12", new: 56, retread: 14, scrap: 14, total: 86 },
+        { nsd: "12 - 16", new: 84, retread: 41, scrap: 41, total: 194 },
+        { nsd: "16 - 20", new: 26, retread: 23, scrap: 23, total: 72 },
+        { nsd: "20 - 24", new: 72, retread: 21, scrap: 21, total: 123 },
     ],
     actions: [
       {
@@ -191,15 +191,11 @@ app.get("/userdata",  (req, res) => {
       },
     ],
     chartData: {
-      brandWise: {
-        labels: ["JK Tyres", "CEAT", "Apollo", "Bridgestone", "Vikrant", "MRF"],
-        data: [200, 300, 250, 345, 150, 400],
-      },
-      monthWise: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-        purchases: [800, 950, 750, 640, 900],
-        refread: [600, 700, 650, 500, 720],
-        scrap: [400, 300, 500, 450, 600],
+      brandData: [300, 200, 400, 345, 150, 200],
+      monthData: {
+        purchases: [640, 580, 700, 750, 500, 600],
+        retread: [300, 250, 320, 350, 270, 290],
+        scrap: [100, 150, 120, 180, 140, 130],
       },
     },
   };
